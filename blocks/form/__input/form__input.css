@@ -1,4 +1,4 @@
-.popup__form__input {
+.form__input {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -16,7 +16,7 @@
 
 /*for 620*/
 @media screen and (max-width: 620px) {
-    .popup__form__input {
+    .form__input {
       max-width: 238px;
     }
   }

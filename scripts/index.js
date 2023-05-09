@@ -1,20 +1,8 @@
-/*Октрытие и закрытие popup*/
+/*Присвоение переменных*/
 let buttonPopupOpen = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let buttonPopupClose = document.querySelector('.popup__close');
-
-/*buttonPopupOpen.addEventListener('click', () => {
-    popup.classList.add('popup__opened');
-});
-
-buttonPopupClose.addEventListener('click', () => {
-    popup.classList.remove('popup__opened');
-});*/
-
-
-
-/*Форма*/
-let popupForm = document.querySelector('.popup__form');
+let popupForm = document.querySelector('.form');
 let inputName = document.getElementById('name');
 let inputProfession = document.getElementById('profession');
 let profileName = document.querySelector('.profile__name');
@@ -27,14 +15,14 @@ function openPopup () {
     inputName.value = profileName.textContent;
     inputProfession.value = profileProfession.textContent;
 };
-
+/*Форма*/
 function FormSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = inputName.value;
     profileProfession.textContent = inputProfession.value;
     togglePopupState(popup);
 }
-
+/*Обработчики */
 buttonPopupClose.addEventListener('click', () => togglePopupState(popup));
 popupForm.addEventListener('submit', FormSubmit);
 buttonPopupOpen.addEventListener('click', (openPopup));
