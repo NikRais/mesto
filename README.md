@@ -31,4 +31,4 @@
 
 **GitHub**
 
-* [Ссылка проекта на GitHub]()
+* [Ссылка проекта на GitHub](https://nikrais.github.io/mesto/index.html)
