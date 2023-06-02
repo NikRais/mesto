@@ -30,7 +30,7 @@ const initialCards = [
 const popupProfileEdit = document.querySelector('.popup-edit');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const buttonPopupClose = popupProfileEdit.querySelector('.popup__close');
-const popupFormEdit = popupProfileEdit.querySelector('.popup__form');
+const popupFormEdit = document.forms["profile-form"];
 const inputName = document.getElementById('name');
 const inputProfession = document.getElementById('profession');
 const profileName = document.querySelector('.profile__name');
@@ -40,7 +40,7 @@ const profileProfession = document.querySelector('.profile__profession');
 const popupAddCard = document.querySelector('.popup-card');
 const popupAddCardOpen = document.querySelector('.profile__add-button');
 const popupAddCardClose = popupAddCard.querySelector('.popup__close');
-const popupFormAdd = popupAddCard.querySelector('.popup__form');
+const popupFormAdd = document.forms["card-form"];
 const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('.elements-template').content;
 const cardTitle = document.getElementById('title');
@@ -51,23 +51,27 @@ const popupViewImageClose = popupViewImage.querySelector('.popup__close');
 const popupViewImageLink = popupViewImage.querySelector('.popup__img');
 const popupViewImageFigcaption = popupViewImage.querySelector('.popup__figcaption');
 
-/*Функция открытия попапа при помощи toogle*/
-const togglePopup = (popup) => {
-  popup.classList.toggle('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 };
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+;
 /*Форма редактирования профиля*/
-function ProfileEditFormInput() {
+function fillProfileInputs() {
   inputName.value = profileName.textContent;
   inputProfession.value = profileProfession.textContent;
 };
 
-function ProfileEditSubmit (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault();
 
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputProfession.value;
 
-  togglePopup(popupProfileEdit);
+  closePopup(popupProfileEdit);
 };
 
 /*Функция создания новой карточки с использованием template*/
@@ -89,7 +93,7 @@ cardLikeButton.addEventListener('click', (evt) => {
 cardDeleteButton.addEventListener('click', (event) => {
   event.target.closest('.element').remove();
 });
-cardImage.addEventListener('click', openPopupImage);
+cardImage.addEventListener('click', openPopupImage); 
 return cardElement;
 };
 
@@ -99,9 +103,9 @@ cardsContainer.prepend(createNewCard(name, link));
 };
 /*Функция просмотра изображения*/
 const openPopupImage = (event) => {
-  togglePopup(popupViewImage);
+  openPopup(popupViewImage);
 
-  eventTargetImg = event.target
+  const eventTargetImg = event.target
   popupViewImageLink.src = eventTargetImg.src;
   popupViewImageFigcaption.textContent = eventTargetImg.alt;
   popupViewImageLink.alt = eventTargetImg.alt;
@@ -115,18 +119,24 @@ const launchInitialCards = (cards) => {
 
 /*Обработчики кнопок*/
 profileEditButton.addEventListener('click', () => {
-  togglePopup(popupProfileEdit);
-  ProfileEditFormInput();
+  openPopup(popupProfileEdit);
+  fillProfileInputs();
 });
-buttonPopupClose.addEventListener('click', () => {
-togglePopup(popupProfileEdit);
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__close');
+// с окончанием `s` нужно обязательно, так как много кнопок
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
 });
-popupFormEdit.addEventListener('submit', ProfileEditSubmit);
+popupFormEdit.addEventListener('submit', handleProfileFormSubmit);
 popupAddCardOpen.addEventListener('click', () => {
-  togglePopup(popupAddCard);
+  openPopup(popupAddCard);
 });
 popupAddCardClose.addEventListener('click', () => {
-  togglePopup(popupAddCard);
+  closePopup(popupAddCard);
 });
 popupFormAdd.addEventListener('submit', (evt) => {
 evt.preventDefault();
@@ -136,9 +146,9 @@ addCardToDOM(cardTitle.value, cardLink.value);
 cardTitle.value = "";
 cardLink.value = "";
 
-togglePopup(popupAddCard);
+closePopup(popupAddCard);
 });
 
-popupViewImageClose.onclick = () => togglePopup(popupViewImage);
+popupViewImageClose.addEventListener = () => closePopup(popupViewImage);
 
 launchInitialCards(initialCards);
