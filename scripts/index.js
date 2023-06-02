@@ -37,7 +37,7 @@ const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 
 /*Присвоение переменных добавления карточки*/
-const popupAddCard = document.querySelector('.popup__new-card');
+const popupAddCard = document.querySelector('.popup-card');
 const popupAddCardOpen = document.querySelector('.profile__add-button');
 const popupAddCardClose = popupAddCard.querySelector('.popup__close');
 const popupFormAdd = popupAddCard.querySelector('.popup__form');
@@ -46,7 +46,7 @@ const cardTemplate = document.querySelector('.elements-template').content;
 const cardTitle = document.getElementById('title');
 const cardLink = document.getElementById('link');
 /*Присвоение переменных увеличенного изображения*/
-const popupViewImage = document.querySelector('.popup__image');
+const popupViewImage = document.querySelector('.popup-image');
 const popupViewImageClose = popupViewImage.querySelector('.popup__close');
 const popupViewImageLink = popupViewImage.querySelector('.popup__img');
 const popupViewImageFigcaption = popupViewImage.querySelector('.popup__figcaption');
