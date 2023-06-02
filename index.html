@@ -26,57 +26,14 @@
         <button class="profile__add-button" type="button" aria-label="Добавить"></button>
       </section>
 
-      <section class="elements" aria-label="Карточки">
-        <article class="element">
-          <img src="./images/element__image/kirill-pershin-karashaevsk.jpg" alt="Карачаевск" class="element__image">
-          <div class="element__container">
-            <h2 class="element__title">Карачаевск</h2>
-            <button type="button" class="element__like-button element__like-button-active"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/element__image/kirill-pershin-elbrus.png" alt="Гора Эльбрус" class="element__image">
-          <div class="element__container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like-button element__like-button-active"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/element__image/kirill-pershin-dombay.png" alt="Домбай" class="element__image">
-          <div class="element__container">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like-button element__like-button-active"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/element__image/kirill-pershin-elbrus.png" alt="Гора Эльбрус" class="element__image">
-          <div class="element__container">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button type="button" class="element__like-button element__like-button-active"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/element__image/kirill-pershin-dombay.png" alt="Домбай" class="element__image">
-          <div class="element__container">
-            <h2 class="element__title">Домбай</h2>
-            <button type="button" class="element__like-button element__like-button-active"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/element__image/kirill-pershin-karashaevsk.jpg" alt="Карачаевск" class="element__image">
-          <div class="element__container">
-            <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button type="button" class="element__like-button element__like-button-active"></button>
-          </div>
-        </article>
-      </section>
+      <section class="elements" aria-label="Карточки"></section>
     </main>
     
     <footer class="footer">
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup-edit">
       <div class="popup__container">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -87,6 +44,39 @@
         </form>
       </div>
     </div>
+    
+    <div class="popup popup__new-card">
+      <div class="popup__container">
+        <button type="button" class="popup__close"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form action="#" name="add-card-form" class="popup__form">
+          <input type="text" placeholder="Название" name="title" id="title" class="popup__input popup__input_type_title" required>
+          <input type="url" placeholder="Ссылка на картинку" name="link" id="link" class="popup__input popup__input_type_link" required>
+            <button type="submit" class="popup__submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup__image">
+      <div class="popup__image-container">
+        <button type="button" class="popup__close"></button>
+        <figure class="popup__figure">
+          <img class="popup__img" alt="Место" src="#">
+          <figcaption class="popup__figcaption"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <template class="elements-template">
+      <article class="element">
+        <img class="element__image">
+        <div class="element__container">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like-button"></button>
+          <button type="button" class="element__delete-button"></button>
+        </div>
+      </article>
+    </template>
 
     <script src="./scripts/index.js"></script>
   </div>
