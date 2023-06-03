@@ -9,4 +9,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   background: #000000;
+  min-height: 100vh;
 }
