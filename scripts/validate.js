@@ -3,7 +3,7 @@ const settings = {
   formSelector : '.popup__form',
   inputSelector : '.popup__input',
   popupSubmit : '.popup__submit',
-  formSet : '.form__set',
+  formSet : '.popup__form-set',
   inputErrorClass : 'popup__input_type_error',
   errorClass : 'popup__error_visible'
 };
