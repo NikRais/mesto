@@ -1,38 +1,10 @@
-/*Присвоение массива готовых карточек*/
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 /*Присвоение переменных редактирования профиля*/
 const popupProfileEdit = document.querySelector(".popup-edit");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const buttonPopupClose = popupProfileEdit.querySelector(".popup__close");
 const popupFormEdit = document.forms["profile-form"];
-const inputName = document.getElementById("name");
-const inputProfession = document.getElementById("profession");
+const inputName = document.querySelector("#name");
+const inputProfession = document.querySelector("#profession");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
@@ -40,11 +12,13 @@ const profileProfession = document.querySelector(".profile__profession");
 const popupAddCard = document.querySelector(".popup-card");
 const popupAddCardOpen = document.querySelector(".profile__add-button");
 const popupAddCardClose = popupAddCard.querySelector(".popup__close");
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll(".popup__close");
 const popupFormAdd = document.forms["card-form"];
 const cardsContainer = document.querySelector(".elements");
 const cardTemplate = document.querySelector(".elements-template").content;
-const cardTitle = document.getElementById("title");
-const cardLink = document.getElementById("link");
+const cardTitle = document.querySelector("#title");
+const cardLink = document.querySelector("#link");
 /*Присвоение переменных увеличенного изображения*/
 const popupViewImage = document.querySelector(".popup-image");
 const popupViewImageClose = popupViewImage.querySelector(".popup__close");
@@ -64,9 +38,8 @@ function closePopup(popup) {
 
 /*overlay*/
 function closePopupOverlay (evt) {
-  const popupOpenedOverlay = document.querySelector('.popup_opened');
-  if (evt.target.classList.contains('popup')) {
-    closePopup(popupOpenedOverlay);
+  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close')) {
+    closePopup(evt.currentTarget)
   };
 };
 
@@ -137,20 +110,20 @@ const launchInitialCards = (cards) => {
   });
 };
 
+/*Функция закрытия всех крестиков*/
+closeButtons.forEach((button) => {
+  const popup = button.closest(".popup");
+
 /*Обработчики кнопок*/
 profileEditButton.addEventListener("click", () => {
   openPopup(popupProfileEdit);
   fillProfileInputs();
 });
-// находим все крестики проекта по универсальному селектору
-const closeButtons = document.querySelectorAll(".popup__close");
-// с окончанием `s` нужно обязательно, так как много кнопок
-closeButtons.forEach((button) => {
-  // находим 1 раз ближайший к крестику попап
-  const popup = button.closest(".popup");
-  // устанавливаем обработчик закрытия на крестик
+
+  /* устанавливаем обработчик закрытия на крестик*/
   button.addEventListener("click", () => closePopup(popup));
 });
+
 popupFormEdit.addEventListener("submit", handleProfileFormSubmit);
 popupAddCardOpen.addEventListener("click", () => {
   openPopup(popupAddCard);
@@ -164,6 +137,9 @@ popupFormAdd.addEventListener("submit", (evt) => {
   cardLink.value = "";
 
   closePopup(popupAddCard);
+  
+  const buttonSubmitElement = popupFormAdd.querySelector('.popup__submit');
+  buttonSubmitElement.setAttribute('disabled', 'disabled');
 });
 
 /* Listeners for Overlay*/
