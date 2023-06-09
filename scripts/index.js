@@ -54,11 +54,31 @@ const popupViewImageFigcaption =
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener('keyup', closePopupEsc);
 };
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keyup', closePopupEsc);
 };
+
+/*overlay*/
+function closePopupOverlay (evt) {
+  const popupOpenedOverlay = document.querySelector('.popup_opened');
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popupOpenedOverlay);
+  };
+};
+
+/*Escape*/
+const closePopupEsc = (event) => {
+  event.preventDefault();
+  if (event.key === 'Escape') {
+    const popupOpenedEscape = document.querySelector('.popup_opened');
+    closePopup(popupOpenedEscape);
+  };
+};
+
 /*Форма редактирования профиля*/
 function fillProfileInputs() {
   inputName.value = profileName.textContent;
@@ -145,5 +165,10 @@ popupFormAdd.addEventListener("submit", (evt) => {
 
   closePopup(popupAddCard);
 });
+
+/* Listeners for Overlay*/
+popupProfileEdit.addEventListener('mousedown', closePopupOverlay);
+popupAddCard.addEventListener('mousedown', closePopupOverlay);
+popupViewImage.addEventListener('mousedown', closePopupOverlay);
 
 launchInitialCards(initialCards);

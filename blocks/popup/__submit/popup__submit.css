@@ -1,7 +1,6 @@
 .popup__submit {
   margin: 48px 0 0;
   padding: 0;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -19,7 +18,14 @@
 }
 
 .popup__submit:hover {
-  opacity: 0.8;
+  opacity: 0.5;
+}
+
+.popup__submit:disabled {
+  opacity: 0.2;
+  color: #000;
+  border: 1px solid #000;
+  background-color: #fff;
 }
 
 /*for 620*/
