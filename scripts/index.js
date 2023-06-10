@@ -8,6 +8,7 @@ const inputProfession = document.querySelector("#profession");
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
+
 /*Присвоение переменных добавления карточки*/
 const popupAddCard = document.querySelector(".popup-card");
 const popupAddCardOpen = document.querySelector(".profile__add-button");
@@ -25,6 +26,8 @@ const popupViewImageClose = popupViewImage.querySelector(".popup__close");
 const popupViewImageLink = popupViewImage.querySelector(".popup__img");
 const popupViewImageFigcaption =
   popupViewImage.querySelector(".popup__figcaption");
+
+const buttonSubmitElement = popupFormAdd.querySelector('.popup__submit');
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -128,6 +131,7 @@ popupFormEdit.addEventListener("submit", handleProfileFormSubmit);
 popupAddCardOpen.addEventListener("click", () => {
   openPopup(popupAddCard);
 });
+
 popupFormAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
@@ -138,8 +142,7 @@ popupFormAdd.addEventListener("submit", (evt) => {
 
   closePopup(popupAddCard);
   
-  const buttonSubmitElement = popupFormAdd.querySelector('.popup__submit');
-  buttonSubmitElement.setAttribute('disabled', 'disabled');
+  disableAttributeButton(buttonSubmitElement);
 });
 
 /* Listeners for Overlay*/

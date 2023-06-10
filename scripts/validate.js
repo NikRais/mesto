@@ -8,6 +8,10 @@ const settings = {
   errorClass : 'popup__error_visible'
 };
 
+const disableAttributeButton = (disableElement) => {
+  disableElement.setAttribute('disabled', 'disabled');
+};
+
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(settings.inputErrorClass);
@@ -65,7 +69,7 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.setAttribute('disabled', 'disabled');
+    disableAttributeButton(buttonElement);
   } else {
     buttonElement.removeAttribute('disabled');
   };
