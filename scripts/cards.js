@@ -62,6 +62,9 @@ const disableAttributeButton = (disableElement) => {
   disableElement.setAttribute('disabled', 'disabled');
 };
 
+/*Переменная для обработчика оверлея и крестиков*/
+const popups = document.querySelectorAll('.popup');
+
 /*Объект с необходимыми параметрами*/
 const settings = {
   formSelector : '.popup__form',
@@ -75,4 +78,5 @@ const settings = {
 export {initialCards, popupProfileEdit, profileEditButton, buttonPopupClose, popupFormEdit, inputName, 
   inputProfession, profileName, profileProfession, popupAddCard, popupAddCardOpen, 
   popupAddCardClose, popupFormAdd, closeButtons, cardsContainer, cardTitle, cardLink, buttonSubmitElement,
-  settings, popupViewImage, popupViewImageClose, popupViewImageLink, popupViewImageFigcaption, disableAttributeButton};
+  settings, popupViewImage, popupViewImageClose, popupViewImageLink, popupViewImageFigcaption,
+  disableAttributeButton, popups};

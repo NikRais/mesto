@@ -1,7 +1,6 @@
-import {initialCards, popupProfileEdit, profileEditButton, buttonPopupClose, popupFormEdit, inputName, 
-  inputProfession, profileName, profileProfession, popupViewImage, popupAddCard, popupAddCardOpen, 
-  popupAddCardClose, popupFormAdd, closeButtons, cardsContainer, 
-  cardTitle, cardLink, buttonSubmitElement, settings, disableAttributeButton} from './cards.js';
+import {initialCards, popupProfileEdit, profileEditButton, popupFormEdit, inputName, 
+  inputProfession, profileName, profileProfession, popupAddCard, popupAddCardOpen,
+  popupFormAdd, cardsContainer, cardTitle, cardLink, settings, popups} from './cards.js';
 
 import { Card } from './Card.js';
 
@@ -19,12 +18,12 @@ function closePopup(popup) {
   document.removeEventListener('keyup', closePopupEsc);
 };
 
-/*Overlay*/
-function closePopupOverlay (evt) {
+/*Overlay и крестик*/
+/*function handlePopupClose (evt) {
   if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close')) {
     closePopup(evt.currentTarget)
   };
-};
+};*/
 
 /*Escape*/
 const closePopupEsc = (event) => {
@@ -51,8 +50,14 @@ function handleProfileFormSubmit(evt) {
 };
 
 /*Функция создания новой карточки с использованием template*/
+function createCard(name, link) {
+  // тут создаете карточку и возвращаете ее
+  const cardElement = new Card(name, link, '.elements-template', openPopup, closePopup).generateCard();
+  return cardElement
+}
+
 const createNewCard = (name, link) => {
-  const newCard = new Card(name, link, '.elements-template', openPopup, closePopup).generateCard();
+  const newCard = createCard(name, link)
   cardsContainer.prepend(newCard);
 };
 
@@ -63,18 +68,10 @@ const launchInitialCards = (array) => {
   })
 };
 
-/*Функция закрытия всех крестиков*/
-closeButtons.forEach((button) => {
-  const popup = button.closest(".popup");
-
 /*Обработчики кнопок*/
 profileEditButton.addEventListener("click", () => {
   openPopup(popupProfileEdit);
   fillProfileInputs();
-});
-
-  /*Устанавливаем обработчик закрытия на крестик*/
-  button.addEventListener("click", () => closePopup(popup));
 });
 
 /*Обработчик отправки формы редактирования профиля*/
@@ -88,18 +85,24 @@ popupFormAdd.addEventListener("submit", (evt) => {
 
   createNewCard(cardTitle.value, cardLink.value);
 
-  cardTitle.value = "";
-  cardLink.value = "";
+  evt.target.reset();
 
   closePopup(popupAddCard);
   
-  disableAttributeButton(buttonSubmitElement);
+  formCardValidator.toggleButtonState()
 });
 
-/*Listeners for Overlay*/
-popupProfileEdit.addEventListener('mousedown', closePopupOverlay);
-popupAddCard.addEventListener('mousedown', closePopupOverlay);
-popupViewImage.addEventListener('mousedown', closePopupOverlay);
+/*Listeners for Overlay and CloseButton*/
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__close')) {
+        closePopup(popup)
+    }
+  })
+})
 
 launchInitialCards(initialCards);
 
