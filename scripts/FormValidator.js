@@ -53,15 +53,6 @@ export class FormValidator {
         });
       };
 
-      resetValidation() {
-        this.toggleButtonState();
-  
-        this._inputList.forEach((inputElement) => {
-          this._hideInputError(inputElement);
-        });
-  
-      };
-
     /*Переключение кнопки отправки формы*/
     toggleButtonState() {
         if (this._hasInvalidInput(this._inputList)) {
