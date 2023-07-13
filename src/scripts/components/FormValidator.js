@@ -1,13 +1,14 @@
 /*Создание класса FormValidator*/
-export class FormValidator {
+export default class FormValidator {
     constructor(settings, formElement) {
       this._settings = settings;
       this._formElement = formElement;
       this._inputList = Array.from(this._formElement.querySelectorAll(this._settings.inputSelector));
       this._buttonElement = this._formElement.querySelector(this._settings.popupSubmit);
     }
+    
     /*Добавление класса ошибки валидации*/
-    _showInputError(formElement, inputElement, errorMessage) {
+    _showInputError(inputElement, errorMessage) {
       const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
       inputElement.classList.add(this._settings.inputErrorClass);
       errorElement.textContent = errorMessage;
@@ -15,7 +16,7 @@ export class FormValidator {
     };
   
     /*Удаление класса ошибки валидации*/
-    _hideInputError(formElement, inputElement) {
+    _hideInputError(inputElement) {
       const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
       inputElement.classList.remove(this._settings.inputErrorClass);
       errorElement.classList.remove(this._settings.errorClass);
@@ -23,21 +24,21 @@ export class FormValidator {
     };
   
     /*Переключение появления/удаления сообщения с ошибкой*/
-    _checkInputValidity(formElement, inputElement) {
+    _checkInputValidity(inputElement) {
       if (!inputElement.validity.valid) {
-        this._showInputError(this._formElement, inputElement, inputElement.validationMessage);
+        this._showInputError(inputElement, inputElement.validationMessage);
       } else {
-        this._hideInputError(this._formElement, inputElement);
+        this._hideInputError(inputElement);
       }
     };
   
     _setEventListeners() {
-      this.toggleButtonState(this._inputList, this._buttonElement);
+      this.toggleButtonState();
   
       this._inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-          this._checkInputValidity(this._formElement, inputElement);
-          this.toggleButtonState(this._inputList, this._buttonElement);
+          this._checkInputValidity(inputElement);
+          this.toggleButtonState();
         });
       });
   
@@ -55,7 +56,7 @@ export class FormValidator {
 
     /*Переключение кнопки отправки формы*/
     toggleButtonState() {
-        if (this._hasInvalidInput(this._inputList)) {
+        if (this._hasInvalidInput()) {
           this._buttonElement.setAttribute('disabled', 'disabled');
         } else {
           this._buttonElement.removeAttribute('disabled');
@@ -65,4 +66,4 @@ export class FormValidator {
     enableValidation() {
       this._setEventListeners();
     };
-  }
+}

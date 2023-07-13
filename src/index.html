@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Райский Никита">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
   <div class="page">
     <header class="header">
-        <img class="header__logo" src="./images/header/logo.svg" alt="Место">
+        <img class="header__logo" src="<%=require('./images/header/logo.svg')%>" alt="Место">
     </header>
 
     <main class="content">
       <section class="profile">
         <div class="profile__card">
-          <img src="./images/profile/image.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+          <img src="<%=require('./images/profile/image.jpg')%>" alt="Жак-Ив Кусто" class="profile__avatar">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-button" type="button" aria-label="Изменить информацию"></button>
@@ -39,8 +38,8 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <form action="#" name="profile-form" class="popup__form" novalidate>
           <fieldset class="popup__form-set">
-            <input type="text" placeholder="Имя" name="name" id="name" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
-            <span class="popup__input-error" id="name-error"></span>
+            <input type="text" placeholder="Имя" name="username" id="username" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
+            <span class="popup__input-error" id="username-error"></span>
             <input type="text" placeholder="О себе" name="profession" id="profession" class="popup__input popup__input_type_profession" minlength="2" maxlength="200" required>
             <span class="popup__input-error" id="profession-error"></span>
             <button type="submit" class="popup__submit">Сохранить</button>
@@ -55,7 +54,7 @@
         <h2 class="popup__title">Новое место</h2>
         <form action="#" name="card-form" class="popup__form" novalidate>
           <fieldset class="popup__form-set">
-            <input type="text" placeholder="Название" name="title" id="title" class="popup__input popup__input_type_title" minlength="2" maxlength="30" required>
+            <input type="text" placeholder="Название" name="name" id="title" class="popup__input popup__input_type_title" minlength="2" maxlength="30" required>
             <span class="popup__input-error" id="title-error"></span>
             <input type="url" placeholder="Ссылка на картинку" name="link" id="link" class="popup__input popup__input_type_link" required>
             <span class="popup__input-error" id="link-error"></span>
@@ -85,8 +84,6 @@
         </div>
       </article>
     </template>
-
-    <script type="module" src="./scripts/index.js"></script>
   </div>
 </body>
 </html>
