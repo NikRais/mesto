@@ -1,11 +1,13 @@
 {
-  "name": "my-webpack-project",
+  "name": "mesto",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "My project",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && webpack --mode=production --node-env=production",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "predeploy": "rm -rf build && npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +20,7 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "cssnano": "^6.0.1",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.25",
