@@ -7,10 +7,14 @@
     "build": "rm -rf dist && webpack --mode=production --node-env=production",
     "dev": "webpack serve",
     "predeploy": "rm -rf build && npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikRais/mesto.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nikita Raisky",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.22.9",
