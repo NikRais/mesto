@@ -1,31 +1,3 @@
-/*Присвоение массива готовых карточек*/
-const initialCards = [
-    {
-      name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-      name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-      name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-      name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-      name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-      name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-  ];
-
 /*Переменные*/
 /*Присвоение переменных увеличенного изображения*/
 const popupViewImage = document.querySelector(".popup-image");
@@ -38,6 +10,12 @@ const profileEditButton = document.querySelector(".profile__edit-button");
 const popupFormEdit = document.forms["profile-form"];
 const inputName = document.querySelector("#username");
 const inputProfession = document.querySelector("#profession");
+
+/*Присовение переменных редактирования аватара*/
+const avatar = document.querySelector('.profile__avatar');
+const popupEditAvatar = document.querySelector('.popup-avatar');
+const popupFormAvatar = popupEditAvatar.querySelector('.popup__form');
+const avatarEditButton = document.querySelector('.profile__avatar-button');
 
 /*Присвоение переменных для создания новой карточки*/
 const profileAddButton = document.querySelector(".profile__add-button");
@@ -55,5 +33,5 @@ const settings = {
   errorClass : 'popup__error_visible'
 };
 
-export {initialCards, profileEditButton, popupFormEdit, inputName, inputProfession, popupFormAdd, 
-  settings, popupViewImage, popupViewImageClose, popupViewImageLink, popupViewImageFigcaption, profileAddButton};
+export {profileEditButton, popupFormEdit, inputName, inputProfession, popupFormAdd, 
+  settings, popupViewImage, popupViewImageClose, popupViewImageLink, popupViewImageFigcaption, profileAddButton, avatar, popupFormAvatar, avatarEditButton};
