@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf dist && webpack --mode=production --node-env=production",
     "dev": "webpack serve",
-    "predeploy": "rm -rf build && npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
@@ -16,6 +16,7 @@
   "keywords": [],
   "author": "Nikita Raisky",
   "license": "ISC",
+  "homepage": "https://github.com/NikRais/mesto#readme",
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
