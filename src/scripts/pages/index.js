@@ -139,7 +139,7 @@ const avatarPopupEdit = new PopupWithForm({
     avatarPopupEdit.loadSubmit(true);
     api.editAvatar(data)
       .then((data) => {
-        avatar.src = data.avatar;
+        userInfo.setUserInfo(data);
         avatarPopupEdit.close();
       })
       .catch((err) => {

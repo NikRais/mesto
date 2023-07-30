@@ -1,7 +1,7 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "My project",
+  "description": "My project mesto",
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && webpack --mode=production --node-env=production",
@@ -9,14 +9,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NikRais/mesto.git"
-  },
   "keywords": [],
   "author": "Nikita Raisky",
   "license": "ISC",
-  "homepage": "https://github.com/NikRais/mesto#readme",
   "devDependencies": {
     "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
